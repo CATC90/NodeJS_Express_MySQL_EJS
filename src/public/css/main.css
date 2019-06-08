@@ -1,0 +1,288 @@
+html,
+body {
+    overflow-x: hidden;
+    background-image: url('../images/root_images/bg.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.myCard {
+    transition: all 300ms ease-in-out;
+}
+
+.myCard:hover {
+    box-shadow: 0 0 10px rgba(0, 0, 0, .7);
+    transform: scale(1.1);
+}
+
+.rev-text-block {
+    max-width: 700px;
+    margin: 1rem 0;
+}
+
+.myrow {
+    padding-bottom: 1.2rem;
+}
+
+.container-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+
+.myContainer {
+    margin: auto 0;
+}
+
+.mybtn {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.add-review {
+    position: absolute;
+    right: -100px;
+    height: 3.7rem;
+    width: 60vw;
+}
+
+.review {
+    position: relative;
+    bottom: -20px;
+    left: -20px;
+    right: 0;
+    width: 60vw;
+    height: 430px;
+}
+
+.plus-review {
+    position: absolute;
+    right: 20px;
+    top: 8px;
+    font-size: 2rem;
+}
+
+.alert-container {
+    position: absolute;
+    z-index: 999;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.my-alter {
+    width: 300px;
+    height: 1.5rem;
+}
+
+.pos {
+    position: absolute;
+    bottom: 40px;
+    right: 10px;
+}
+
+.gamesContainer {
+    transition: all 300ms ease-in-out;
+    margin-top: 10rem;
+}
+
+.btn-circle {
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    padding: 10px 0;
+    font-size: 22px;
+    line-height: 1.428571429;
+    border-radius: 15px;
+}
+
+.rev-btn {
+    border-radius: 10px;
+    height: 2rem;
+    line-height: .5rem;
+    position: relative;
+    margin-right: 1rem;
+    float: right;
+}
+
+.parallax-btn {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    border-radius: 10px;
+    height: 2rem;
+    line-height: .5rem;
+
+}
+
+.btn-circle.btn-lg {
+    width: 50px;
+    height: 50px;
+    padding: 10px 14px;
+    font-size: 22px;
+    line-height: 1.33;
+    border-radius: 50%;
+    margin: 0 10px;
+}
+
+.btn-circle.btn-xl {
+    width: 70px;
+    height: 70px;
+    padding: 10px 16px;
+    font-size: 24px;
+    line-height: 1.33;
+    border-radius: 35px;
+}
+
+
+.register-right {
+    background: #f8f9fa;
+    border-top-left-radius: 10% 50%;
+    border-bottom-left-radius: 10% 50%;
+}
+
+.register .register-form {
+    padding: 10%;
+    margin-top: 10%;
+}
+
+.btnRegister {
+    float: right;
+    margin-top: 10%;
+    border: none;
+    border-radius: 1.5rem;
+    padding: 2%;
+    color: #fff;
+    font-weight: 600;
+    width: 50%;
+    cursor: pointer;
+}
+
+.register .nav-tabs {
+    margin-top: 3%;
+    border: none;
+    background: #0062cc;
+    border-radius: 1.5rem;
+    width: 28%;
+    float: right;
+}
+
+.register .nav-tabs .nav-link {
+    padding: 2%;
+    height: 34px;
+    font-weight: 600;
+    color: #fff;
+    border-top-right-radius: 1.5rem;
+    border-bottom-right-radius: 1.5rem;
+}
+
+.register .nav-tabs .nav-link:hover {
+    border: none;
+}
+
+.register .nav-tabs .nav-link.active {
+    width: 100px;
+    color: #0062cc;
+    border: 2px solid #0062cc;
+    border-top-left-radius: 1.5rem;
+    border-bottom-left-radius: 1.5rem;
+}
+
+.navbar-footer {
+    position: relative;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1rem;
+    background-color: #343A40 !important;
+}
+
+.register-heading {
+    text-align: center;
+    margin-top: 8%;
+    margin-bottom: -15%;
+    color: #495057;
+}
+
+/*SIGNUP TRY*/
+
+.register {
+    background: transparent;
+    margin: 0;
+    padding: 0;
+}
+
+.register-right {
+    background: #f8f9fa;
+    transform: translate(180px, 0px);
+    margin-top: 9rem;
+    margin-bottom: 2rem;
+    border-top-left-radius: 10% 50%;
+    border-bottom-left-radius: 10% 50%;
+    animation: anim 500ms ease-in;
+}
+
+@keyframes anim {
+    from {
+        transform: translateX(1000px);
+    }
+}
+
+
+.btnRegister {
+    position: absolute;
+    transform: translate(-170px, 20px);
+    float: right;
+    margin-top: 10%;
+    border: none;
+    border-radius: 1.5rem;
+    padding: 2%;
+    color: #fff;
+    font-weight: 600;
+    width: 100%;
+    cursor: pointer;
+}
+
+.register .nav-tabs {
+    margin-top: 3%;
+    border: none;
+    background: #0062cc;
+    border-radius: 1.5rem;
+    width: 28%;
+    float: right;
+}
+
+.mytab {
+    transform: translateY(-30px);
+}
+
+.register .nav-tabs .nav-link {
+    padding: 2%;
+    height: 34px;
+    font-weight: 600;
+    color: #fff;
+    border-top-right-radius: 1.5rem;
+    border-bottom-right-radius: 1.5rem;
+}
+
+.register .nav-tabs .nav-link:hover {
+    border: none;
+}
+
+.register .nav-tabs .nav-link.active {
+    width: 100px;
+    color: #0062cc;
+    border: 2px solid #0062cc;
+    border-top-left-radius: 1.5rem;
+    border-bottom-left-radius: 1.5rem;
+}
+
+.register-heading {
+    text-align: center;
+    margin-top: 8%;
+    margin-bottom: -15%;
+    color: #495057;
+}

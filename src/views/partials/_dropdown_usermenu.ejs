@@ -1,0 +1,76 @@
+<%if(route != 'index'){%>
+
+<style>
+  .avatar-topnav {
+      width: 50px;
+      height: 50px;
+      line-height: 30px;
+      position: absolute;
+      left: -30px;
+      top:0;
+      margin: 0 auto;
+      text-align: center;
+      border: 2px solid black;
+      border-radius: 50%;
+      overflow: hidden;
+      box-shadow: 0 0 14px rgba(0, 0, 0, .7);
+      background: url(/<%=user.id%>/avatar/avatar.jpg);
+      background-position: center;
+      background-size: cover;
+      background-repeat: no-repeat;
+      cursor: pointer;
+  
+  }
+</style>
+
+<div class="dropdown">
+    <a class="btn btn-primary dropdown-toggle" style="background:transparent; color: white;" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <div class="avatar-topnav"></div><%=user.fullname.split(' ')[0]%> Menu
+    </a>
+    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+        <a class="dropdown-item navbar-brand btn-light" style="color:black;" href="/user_profile">Your profile</a>
+        <a class="dropdown-item navbar-brand btn-light" style="color:black;" href="/links/add">Add a Game</a>
+        <a class="dropdown-item navbar-brand btn-light" style="color:black;" href="/links">Your Games</a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item navbar-brand btn-light" style="color:black;" href="/index/logout">Log out</a>
+    </div>
+</div>
+<%}else{%>
+    <!-- Button trigger modal -->
+<label class="ml-auto" style="transform: translate(-10px, 5px); color: white;">Do you have an Account?</label>
+<button type="button" class="btn btn-success" data-toggle="modal" data-target="#login">
+  Login
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Login</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+        <div class="modal-body">
+        <form action="/index/login" method="POST" enctype="multipart/form-data">
+            <div class="form-group">
+            <label for="email">Email</label>
+            <input type="text" name="email" id="email" class="form-control" placeholder="Your email" aria-describedby="helpId" required>
+            <small id="helpId" class="text-muted">example@example.com</small>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" name="password" id="password" placeholder="Your password" required>
+            </div>
+            <p>Forgot password? <a href="/index/password">Click here</a></p>                    
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <input type="submit" name="ingreso" value="Login" class="btn btn-success" style="width:100%"/>
+            </div>
+        </form>
+    </div>
+  </div>
+</div>
+<%}%>

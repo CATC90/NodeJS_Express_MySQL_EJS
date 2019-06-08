@@ -1,0 +1,56 @@
+<div class="container register">
+    <div class="row">
+        <div class="col-md-4 register-left">
+        </div>
+        <div class="col-md-8 register-right">
+            <div class="tab-content mytab" id="myTabContent">
+                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                    <h3 class="register-heading">Sign up into VideoJuegos</h3>
+                    <form action="/index/signup" method="POST">
+                    <div class="row register-form">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="First Name *" name="name" required/>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Last Name *" name="lastname" required/>
+                            </div>
+                            <div class="form-group">
+                                <input type="password" class="form-control" placeholder="Password *" name="password" required/>
+                            </div>
+                            <div class="form-group">
+                                <input type="password" class="form-control"  placeholder="Confirm Password *" name="confirm" required/>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input type="email" class="form-control" placeholder="Your Email *" name="email" required/>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" minlength="10" maxlength="10"  class="form-control" placeholder="Your RUT *" name="rut" required/>
+                            </div>
+                            <div class="form-group" style="transform:translate(34px, 15px);">
+                                <div class="maxl">
+                                    <label class="radio inline" style="margin-right:10px; transform:translateY(-4px);">Type of User : </label>
+                                    <label class="radio inline"> 
+                                        <input type="radio" name="user_type" value="user" checked>
+                                        <span> User </span> 
+                                    </label>
+                                    <label class="radio inline"> 
+                                        <input type="radio" name="user_type" value="admin">
+                                        <span>Admin</span> 
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group" style="transform: translateY(60px);">
+                                <input type="submit" class="btn btn-success btnRegister"  value="Register"/>
+                            </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

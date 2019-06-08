@@ -1,0 +1,191 @@
+<%- include partials/_headerInfo.ejs%>
+
+<style> 
+.parallax { 
+    background-image: url("/<%=game[0].user_id%>/<%=game[0].id%>/min_photo/minphoto.jpg"); 
+    min-height: 400px;
+    width: 100%;  
+    background-attachment: fixed; 
+    background-position: center 40%;
+    background-repeat: no-repeat; 
+    background-size: cover;
+    box-shadow:0px 1px 10px rgba(0,0,0,.7);
+} 
+</style> 
+<%
+const editMinPhoto = game[0].title.split(' ')[0]+game[0].id+'minphoto';
+%>
+<div class="container">
+    <div class="row">
+        <div class="col-12 p-3">
+            <img class="card-img-top parallax" style="" alt="">
+            <button class="btn btn-success parallax-btn" data-toggle="modal" data-target="#<%=editMinPhoto%>">Change photo</button>
+                <form action="/links/edit_minphoto" method="POST" enctype="multipart/form-data">
+                    <div class="modal fade" id="<%=editMinPhoto%>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document" style="width:50vw;">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Change photo</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="form-group">
+                                <p for="minphoto">Select a photo</p>
+                                <input type="file" class="form-control-file" name="minphoto" id="minphoto">
+                                <input type="text" name="game" value="<%=game[0].id%>" hidden/>
+                                </div>                    
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <input type="submit" name="ingreso" value="Send" class="btn btn-success" style="width:100%"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <div class="card mb-3 text-left shadow">
+              <div class="card-body">
+                <!--Modal Bottom-->
+                <button type="button" class="btn btn-success rev-btn" data-toggle="modal" data-target="#login">Add a review</button>
+                <!-- Modal -->
+            <form action="/links/add_review" method="POST" enctype="multipart/form-data">
+                <div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document" style="width:50vw;">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Write your review</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="form-group">
+                                <label for="reviewtitle">Title</label>
+                                <input type="text" name="review_title" id="reviewtitle" class="form-control" placeholder="Title*" aria-describedby="helpId" required>
+                                </div>
+                                <div class="form-group">
+                                  <label for="review">Your review</label>
+                                  <textarea class="form-control" name="info" id="review" rows="7"></textarea>
+                                </div>
+                                <div class="form-group">
+                                  <p for="review_photo">Add a photo to your review</p>
+                                  <input type="file" class="form-control-file" name="review_photo" id="review_photo">
+                                  <input type="text" name="game" value="<%=game[0].id%>" hidden/>
+                                </div>                    
+                            </div>
+                                <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <input type="submit" name="ingreso" value="Add review" class="btn btn-success" style="width:100%"/>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+                </form>
+
+                <!--End Modal-->
+                <h4 class="card-title"><%=game[0].title%></h4>
+                <h6 class="card-subtitle mb-2 text-muted">Plataform : <%=game[0].plataform%></h6>
+                <p class="card-text"><%=game[0].description%></p>
+                <% review.forEach(rev => { 
+                    const modalId = game[0].title.split(' ')[0]+rev.review_photo.split('.')[0];
+                    const modalEdit = game[0].title.split(' ')[0]+'edit'+rev.review_photo.split('.')[0];
+                    %>
+                      <div class="card flex-row flex-wrap mb-3" style="border-radius: 15px;">
+                        <div class="border-0 p-4">
+                            <div class="flex-column flex-wrap">
+                                <div class="row mb-2">
+                                    <a type="button" data-toggle="modal" data-target="#<%=modalId%>"><img class="float-left"src="/<%=game[0].user_id%>/<%=game[0].id%>/review_photos/<%=rev.review_photo%>" style="max-width: 300px;" alt=""></a>
+                                </div>
+                                <div class="row">
+                                    <button class="btn btn-success float-left" data-toggle="modal" data-target="#updatePhotoRev" style="width:100%;">Change review photo</button>
+                                    <div class="modal fade" id="updatePhotoRev" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel" for="changePhoto">Change review photo</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <form action="/links/editPhotoReview" method="POST" enctype="multipart/form-data">
+                                                        <div class="form-group">
+                                                          <input type="file" class="form-control-file" name="editphotoreview" id="changePhoto">
+                                                          <input type="text" name="id_review" value="<%=rev.id%>" hidden/>
+                                                          <input type="text" name="game" value="<%=game[0].id%>" hidden/>
+                                                          <input type="submit" class="btn btn-success float-right" style="transform:translateY(-30px);"value="Send"/>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="modal fade" id="<%=modalId%>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content" style="width: 850px; transform: translateX(-150px);">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel"><%=rev.review_title%></h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <img class="float-left"src="/<%=game[0].user_id%>/<%=game[0].id%>/review_photos/<%=rev.review_photo%>" style="max-width: 100%;" alt="">    
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-block px-2 rev-text-block">
+                            <h4 class="card-title"><%=rev.review_title%></h4>
+                            <p class="card-text"><%=rev.info%></p>
+                        </div>
+                        <div class="w-100"></div>
+                        <div class="card-footer w-100 text-muted">
+                            Created at : <%=rev.created_at%>
+                            <a href="/links/del_review/id=<%=rev.id%>" class="btn btn-danger rev-btn">Delete</a>
+                            <!--Modal Edit Button -->
+                            <a class="btn btn-success rev-btn" style="color: white;" data-toggle="modal" data-target="#<%=modalEdit%>">Edit</a>
+                            <!--Modal Edit -->
+                            <form action="/links/edit_review" method="POST" enctype="multipart/form-data">
+                                <div class="modal fade" id="<%=modalEdit%>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document" style="width:50vw;">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Edit your review</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="form-group">
+                                                    <label for="reviewtitle">Title</label>
+                                                    <input type="text" name="review_title" id="reviewtitle" class="form-control" placeholder="Title*" aria-describedby="helpId" value="<%=rev.review_title%>" required>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="review">Your review</label>
+                                                    <textarea class="form-control" name="info" id="review" rows="7"><%=rev.info%></textarea>
+                                                    <input type="text" name="game" value="<%=game[0].id%>" hidden/>
+                                                    <input type="text" name="id_review" value="<%=rev.id%>" hidden/>    
+                                                </div>   
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                <input type="submit" name="ingreso" value="Edit" class="btn btn-success" style="width:100%"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                <% }) %>
+              </div>
+            </div>
+
+<%- include partials/_footer.ejs%>

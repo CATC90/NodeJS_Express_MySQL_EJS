@@ -1,0 +1,75 @@
+<%- include ./_header.ejs%>
+<form action="/links/add" method="POST" enctype="multipart/form-data">
+<div class="container p-4" style="margin-top:7rem;">
+    <div class="row">
+        <div class="card shadow" style="height:510px;">
+        <h4 class="card-header" >Add a game</h4>
+            <div class="card-body">
+                    <div class="form-group"  >
+                        <label for="titleGame" style="font-size:1.1rem;">Title of the Game</label>
+                        <input type="text" class="form-control" name="title" id="titleGame" placeholder="title*" autofocus required/>
+                    </div>
+                    <div class="form-group"  >
+                        <label for="description" style="font-size:1.1rem;">Description of your Game</label>
+                        <input type="text" class="form-control" name="description" id="description" placeholder="description*" required/>
+                    </div>
+                    <label style="transform:translateY(10px); font-size:1.1rem;" >Choose plataforms</label>
+                    <div class="form-group" style="transform:translateY(10px);" >
+                        <div class="form-check form-check-inline">
+                            <input type="radio" class="form-check-input" id="ns" value="nswitch" name="plataform" checked/>
+                            <label for="ns" class="form-check-label">NSwitch</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input type="radio" class="form-check-input" id="ps4" value="ps4" name="plataform"/>
+                            <label for="ps4" class="form-check-label">PS4</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input type="radio" class="form-check-input" id="xboxone" value="xboxone" name="plataform"/>
+                            <label for="xboxone" class="form-check-label">XboxOne</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input type="radio" class="form-check-input" id="pc" value="pc" name="plataform"/>
+                            <label for="pc" class="form-check-label">PC</label>
+                        </div>
+                    </div>
+                    <div class="form-group" style="transform:translateY(25px);" >
+                        <label for="photoGame" style="font-size:1.1rem;">Upload a photo of the Game</label>
+                        <input type="file" id="photoGame" class="form-control-file" name="photo"/>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" class="btn btn-success form-control" name="btn-add" value="Add" style="transform:translateY(35px);"/>
+                    </div>
+            </div><!--EndCard-->
+        </div><!--EndRow-->
+            <div class="col-8">
+            <div class="card text-left add-review">
+              <div class="card-body">
+                <h4 class="card-title">Add a review</h4>
+                <a href="#" class="card-title plus-review" data-toggle="collapse" aria-expanded="false" data-target="#review"><i class="fa fa-plus-circle" aria-hidden="true"></i></a>
+                
+                <div class="card text-left review collapse" id="review">
+                  <div class="card-body">
+                    <div class="card-text">
+                        <div class="form-group">
+                          <label for="title" style="font-size:1.1rem;">Review's Title</label>
+                          <input type="text" name="review_title" id="title" class="form-control" placeholder="The title of the review" aria-describedby="helpId">
+                        </div>
+                        <div class="form-group">
+                          <label for="info" style="font-size:1.1rem;">Your review</label>
+                          <textarea class="form-control" name="info" id="info" rows="6"></textarea>
+                        </div>
+                        <div class="form-group mr-auto">
+                          <p for="review_photo">Add a photo for your review</p>
+                          <input type="file" class="form-control-file" name="review_photo" id="review_photo">
+                        </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+    </div><!--EndContainer-->
+</div>
+</form>
+
+<%-include ./_footer.ejs%>

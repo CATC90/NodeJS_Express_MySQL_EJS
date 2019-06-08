@@ -1,0 +1,25 @@
+<%- include partials/_header.ejs%>
+<%
+    console.log(route);
+%>
+<div class="container p-4 gamesContainer">
+    <div class="row">
+        <% juegos.forEach(juego => { 
+                const photo = juego.photo;
+            %>
+            <div class="col-md-4 myrow">
+                <div class="card myCard" style="min-height: 400px; max-height: 400px;">
+                <img class="card-img-top" src="/<%=user.id%>/<%=juego.id%>/min_photo/minphoto.jpg"  alt="">
+                <div class="card-body">
+                    <h4 class="card-title"><%=juego.title%></h4>
+                    <h6 class="card-subtitle mb-2 text-muted">Plataform : <%=juego.plataform%></h6>
+                    <p class="card-text"><%=juego.description%></p>
+                    <h7 class="card-subtitle mb-2 text-muted pos">Created at : <%=juego.created_at%></h7>
+                    <a href="/links/id=<%=juego.id%>&title=<%=juego.title%>" class="btn btn-success mybtn" >More info</a>
+                </div>
+                </div>
+            </div>
+        <% }) %>
+    </div>
+
+<%- include partials/_footer.ejs%>

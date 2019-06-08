@@ -1,0 +1,66 @@
+<form action="/user_profile_edit" method="POST" enctype="multipart/form-data">
+<div class="container p-4 col-10 " style="margin-top: 6rem;opacity:.7;">
+    <div class="card-group shadow mb-5 bg-white rounded">
+        <div class="card" style="background-color: rgba(245, 245, 245, .0);">
+            <div class="card-body"  >
+                <h4 class="card-title" style="color:black;">Your Profile</h4>
+                <div class="form-group">
+                  <label for="fullname">Fullname</label>
+                  <input type="text" name="fullname" id="fullname" class="form-control" value="<%=user.fullname%>" aria-describedby="helpId">
+                </div>
+                <div class="form-inline">
+                  <label for="" class="pb-2">Change your password</label>
+                    <div class="form-group pb-3">
+                        <input type="password" name="old_password" id="old_password" class="form-control mr-2" placeholder="Old password*">
+                        <input type="password" name="new_password" id="new_password" class="form-control ml-2" placeholder="New password*">
+                    </div>
+                </div>
+                <div class="form-group">
+                  <label for="fullname">Email</label>
+                  <input type="text" name="email" id="email" class="form-control" value="<%=user.email%>" aria-describedby="helpId">
+                </div>
+               <div class="form-group">
+                  <label for="fullname">Rut</label>
+                  <input type="text" name="rut" id="rut" class="form-control" value="<%=user.rut%>" disabled>
+                </div>
+                <div class="form-group">
+                  <label for="">First login at</label>
+                  <input type="text" name="created_at" id="created_at" class="form-control" value="<%=user.created_at%>" disabled>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-body">
+                <style>
+                .avatar-profile {
+                    width: 200px;
+                    height: 200px;
+                    line-height: 200px;
+                    margin: 0 auto;
+                    text-align: center;
+                    border: 2px solid black;
+                    border-radius: 50%;
+                    overflow: hidden;
+                    box-shadow: 0 0 14px rgba(0, 0, 0, .7);
+                    background: url(/<%=user.id%>/avatar/avatar.jpg);
+                    background-position: center;
+                    background-size: cover;
+                    background-repeat: no-repeat;
+                }
+                </style>
+                <div class="avatar-profile">
+                </div>
+                <div class="form-group p-4">
+                  <label for="photo">Select an avatar</label>
+                  <input type="file" class="form-control-file" name="photo" id="photo">
+                </div>
+                <div class="form-group">
+                  <label for="biography">Something about you</label>
+                  <textarea class="form-control" name="biography" id="biography" rows="4"><%=user.biography%></textarea>
+                </div>
+                <button type="submit" class="btn btn-success w-100">Edit your profile</button>
+            </div>
+        </div>
+    </div>
+</div>
+</form>
