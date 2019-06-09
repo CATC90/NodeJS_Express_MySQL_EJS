@@ -4,6 +4,7 @@ const fs = require('fs');
 const pool = require('../database');
 const helpers = require('../lib/helper');
 const keys = require('../keys');
+const path = require('path');
 
 
 passport.use('local.login', new LocalStrategy({
@@ -62,8 +63,8 @@ passport.use('local.signup', new LocalStrategy({
     user.id = result.insertId;
 
     if (!fs.existsSync(keys._pathUserPhotos + user.id)) {
-        fs.mkdirSync(keys._pathUserPhotos + user.id);
-        fs.mkdirSync(keys._pathUserPhotos + user.id + '/avatar');
+        fs.mkdirSync(path.join(keys._pathUserPhotos, user.id));
+        fs.mkdirSync(path.join(keys._pathUserPhotos, user.id, 'avatar'));
     }
     done(null, user);
 }));
