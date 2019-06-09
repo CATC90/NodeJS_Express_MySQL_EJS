@@ -99,6 +99,46 @@ body {
     border-radius: 15px;
 }
 
+.facebook-profile {
+    border: 2px solid black;
+    box-shadow: 0 0 15px rgba(0, 0, 0, .7);
+    width: 200px;
+    height: 200px;
+    margin: 0 auto;
+    overflow: hidden;
+    border-radius: 50%;
+}
+
+.social-container {
+    position: absolute;
+    left: 30px;
+}
+
+.my-social-media {
+    font-size: 1.5rem;
+    margin: 0 10px;
+}
+
+.my-social-media:hover>i {
+    animation-name: social;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes social {
+    0% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+
+    100% {
+        transform: translateY(0px);
+    }
+}
+
 .rev-btn {
     border-radius: 10px;
     height: 2rem;
@@ -192,10 +232,6 @@ body {
 }
 
 .navbar-footer {
-    position: relative;
-    bottom: 0;
-    left: 0;
-    right: 0;
     height: 1rem;
     background-color: #343A40 !important;
 }
@@ -213,6 +249,7 @@ body {
     background: transparent;
     margin: 0;
     padding: 0;
+    height: 100%;
 }
 
 .register-right {
