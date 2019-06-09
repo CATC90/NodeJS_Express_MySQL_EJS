@@ -4,7 +4,7 @@ module.exports = {
     database: {
         host: 'localhost',
         user: 'root',
-        password: 'admin',
+        password: '',
         database: 'videoJuegos'
     },
     home: {
