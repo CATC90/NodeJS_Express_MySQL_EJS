@@ -62,9 +62,9 @@ passport.use('local.signup', new LocalStrategy({
     const result = await pool.query('insert into user set ?', [user]);
     user.id = result.insertId;
 
-    if (!fs.existsSync(keys._pathUserPhotos + user.id)) {
-        fs.mkdirSync(path.join(keys._pathUserPhotos, user.id));
-        fs.mkdirSync(path.join(keys._pathUserPhotos, user.id, 'avatar'));
+    if (!fs.existsSync(path.join(keys._pathUserPhotos, user.id.toString()))) {
+        fs.mkdirSync(path.join(keys._pathUserPhotos, user.id.toString()));
+        fs.mkdirSync(path.join(keys._pathUserPhotos, user.id.toString(), 'avatar'));
     }
     done(null, user);
 }));

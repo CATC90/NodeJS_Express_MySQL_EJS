@@ -38,10 +38,10 @@ router.post('/add', helper.isLoggedin, async (req, res) => {
 
 
     try {
-        if (!fs.existsSync(keys._pathUserPhotos + req.user.id + result.insertId)) {
-            fs.mkdirSync(keys._pathUserPhotos + req.user.id + '/' + result.insertId);
-            fs.mkdirSync(keys._pathUserPhotos + req.user.id + '/' + result.insertId + '/min_photo');
-            fs.mkdirSync(keys._pathUserPhotos + req.user.id + '/' + result.insertId + '/review_photos');
+        if (!fsX.existsSync(path.join(keys._pathUserPhotos, req.user.id.toString(), result.insertId.toString()))) {
+            fsX.mkdirSync(path.join(keys._pathUserPhotos, req.user.id.toString(), result.insertId.toString()));
+            fsX.mkdirSync(path.join(keys._pathUserPhotos, req.user.id.toString(), result.insertId.toString(), 'min_photo'));
+            fsX.mkdirSync(path.join(keys._pathUserPhotos, req.user.id.toString(), result.insertId.toString(), 'review_photos'));
         }
     } catch (e) {
         console.log('Algo salio mal');
@@ -60,15 +60,15 @@ router.post('/add', helper.isLoggedin, async (req, res) => {
         await pool.query('update review set review_photo = ? where id = ?', [update, review_photo.insertId]);
         //fin parche
 
-        req.files.review_photo.mv(keys._pathUserPhotos + req.user.id + '/' + result.insertId + '/review_photos/' + review_photo.insertId + '.jpg', (err) => {
+        req.files.review_photo.mv(path.join(keys._pathUserPhotos, req.user.id.toString(), result.insertId.toString(), 'review_photos', review_photo.insertId + '.jpg'), (err) => {
             if (err) {
                 return res.status(500).send(err);
             };
         });
     }
-    req.files.photo.mv(keys._pathUserPhotos + req.user.id + '/' + result.insertId + '/min_photo/minphoto.jpg', (err) => {
+    req.files.photo.mv(path.join(keys._pathUserPhotos, req.user.id.toString(), result.insertId.toString(), 'min_photo', 'minphoto.jpg'), (err) => {
         if (err) {
-            return res.status(500).send(err);
+            console.log(err);
         }
         req.flash('success', 'Game saved successfully!');
         res.redirect('/links');
@@ -133,14 +133,13 @@ router.get('/del/id=:id&title=:title', helper.isLoggedin, async (req, res) => {
         id,
         title
     ]);
-    console.log(keys._pathUserPhotos + req.user.id + '/' + id);
+    console.log(path.join(keys._pathUserPhotos, req.user.id.toString(), id.toString()));
     try {
-        fsX.removeSync(keys._pathUserPhotos + req.user.id + '/' + id);
+        fsX.removeSync(keys._pathUserPhotos + req.user.id.toString(), id.toString());
     } catch (e) {
         console.log('Error al eliminar el directorio');
     }
-
-    req.flash('success', 'Game deleted successfully')
+    req.flash('success', 'Game deleted successfully');
     res.redirect('/links');
 });
 
@@ -207,7 +206,7 @@ router.get('/del_review/id=:id', async (req, res) => {
 });
 
 router.post('/edit_minphoto', async (req, res) => {
-    const update_path = keys._pathUserPhotos + '/' + req.user.id + '/' + req.body.game + '/min_photo/minphoto.jpg';
+    const update_path = path.join(keys._pathUserPhotos, req.user.id.toString(), req.body.game, 'min_photo', 'minphoto.jpg');
     const game = await pool.query('select * from Juego where id = ?', [req.body.game]);
     req.files.minphoto.mv(update_path);
     const redirect_path = '/links/id=' + req.body.game + '&title=' + game[0].title;
